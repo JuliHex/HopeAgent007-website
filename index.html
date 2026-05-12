@@ -11,18 +11,20 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav class="glass-nav">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <nav class="glass-nav" aria-label="Main Navigation">
         <div class="container">
             <a href="#" class="logo">Hope<span>Agent</span>007</a>
             <ul class="nav-links">
                 <li><a href="#mission">Mission</a></li>
                 <li><a href="#projects">Projects</a></li>
-                <li><a href="https://github.com/HopeAgent007" target="_blank" class="cta-small">GitHub</a></li>
+                <li><a href="https://github.com/HopeAgent007" target="_blank" class="cta-small" aria-label="Visit our GitHub profile">GitHub</a></li>
             </ul>
         </div>
     </nav>
 
-    <header class="hero">
+    <main id="main-content">
+        <header class="hero">
         <div class="blob-bg"></div>
         <div class="container">
             <div class="hero-content">
@@ -82,13 +84,14 @@
                             <span>Tauri</span>
                             <span>Cross-platform</span>
                         </div>
-                        <a href="https://github.com/HopeAgent007/SDAHymns" target="_blank" class="btn-text">Explore Repo &rarr;</a>
+                        <a href="https://github.com/HopeAgent007/SDAHymns" target="_blank" class="btn-text" aria-label="Explore the SDAHymns repository on GitHub">Explore Repo &rarr;</a>
                     </div>
                 </div>
                 <!-- Add more projects here as needed -->
             </div>
         </div>
     </section>
+    </main>
 
     <footer>
         <div class="container">
