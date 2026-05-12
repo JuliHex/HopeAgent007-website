@@ -2,8 +2,8 @@
     /* Color Palette - Light Mode (Default) */
     --clr-bg: #fdfaf6; /* Cream */
     --clr-bg-alt: #ffffff; /* White */
-    --clr-burgundy: #7a1624;
-    --clr-burgundy-dark: #5c0f1a;
+    --clr-blue: #1e3a8a; /* Deep Royal Blue */
+    --clr-blue-dark: #172554; /* Darker Navy */
     --clr-gold: #d9a05b;
     --clr-gold-light: #f2c78f;
     --clr-text: #2d2020;
@@ -23,8 +23,8 @@
 [data-theme="dark"] {
     --clr-bg: #1a1515; /* Dark charcoal/brown */
     --clr-bg-alt: #241d1d; /* Slightly lighter for cards */
-    --clr-burgundy: #b3394b; /* Brighter burgundy for contrast */
-    --clr-burgundy-dark: #8f2636;
+    --clr-blue: #3b82f6; /* Brighter Blue for contrast */
+    --clr-blue-dark: #2563eb; /* Darker Blue */
     --clr-gold: #e6b87a;
     --clr-gold-light: #4a3822; /* Darker gold-ish for badges */
     --clr-text: #f0eaea;
@@ -51,7 +51,7 @@ h1, h2, h3, h4 {
     font-family: var(--font-heading);
     font-weight: 500;
     line-height: 1.2;
-    color: var(--clr-burgundy);
+    color: var(--clr-blue);
     transition: color var(--transition-speed);
 }
 
@@ -78,7 +78,6 @@ a {
     left: 0;
     width: 100%;
     background-color: var(--clr-bg);
-    /* remove alpha to prevent weird text overlapping in dark mode if scrolling over bright things, or use rgb() with variables. Let's use simple solid color for simplicity and consistency with dark mode */
     border-bottom: 1px solid var(--clr-border);
     z-index: 1000;
     padding: 1rem 0;
@@ -98,7 +97,7 @@ a {
     font-family: var(--font-heading);
     font-size: 1.5rem;
     font-weight: 600;
-    color: var(--clr-burgundy);
+    color: var(--clr-blue);
 }
 
 .logo-icon {
@@ -123,7 +122,7 @@ a {
 }
 
 .nav-links a:hover {
-    color: var(--clr-burgundy);
+    color: var(--clr-blue);
 }
 
 /* Nav Actions (Buttons) */
@@ -149,7 +148,7 @@ a {
 
 .icon-btn:hover {
     background-color: var(--clr-bg-alt);
-    color: var(--clr-burgundy);
+    color: var(--clr-blue);
 }
 
 .lang-text {
@@ -163,7 +162,6 @@ a {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    /* Gradient handles dark/light using var(--clr-bg) to transparent to keep it clean */
     background: linear-gradient(135deg, var(--clr-bg) 0%, var(--clr-bg-alt) 100%);
     padding-top: 5rem;
 }
@@ -176,7 +174,7 @@ a {
     display: inline-block;
     padding: 0.25rem 1rem;
     background-color: var(--clr-gold-light);
-    color: var(--clr-burgundy-dark);
+    color: var(--clr-blue-dark);
     font-size: 0.875rem;
     font-weight: 600;
     border-radius: 50px;
@@ -219,24 +217,24 @@ a {
 }
 
 .btn-primary {
-    background-color: var(--clr-burgundy);
+    background-color: var(--clr-blue);
     color: #ffffff; /* Explicitly white text for button always */
 }
 
 .btn-primary:hover {
-    background-color: var(--clr-burgundy-dark);
+    background-color: var(--clr-blue-dark);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(122, 22, 36, 0.2);
+    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.2);
 }
 
 .btn-secondary {
     background-color: transparent;
-    color: var(--clr-burgundy);
-    border: 2px solid var(--clr-burgundy);
+    color: var(--clr-blue);
+    border: 2px solid var(--clr-blue);
 }
 
 .btn-secondary:hover {
-    background-color: var(--clr-burgundy);
+    background-color: var(--clr-blue);
     color: #ffffff;
 }
 
@@ -295,7 +293,7 @@ section {
     width: 48px;
     height: 48px;
     border: 4px solid var(--clr-border);
-    border-bottom-color: var(--clr-burgundy);
+    border-bottom-color: var(--clr-blue);
     border-radius: 50%;
     display: inline-block;
     box-sizing: border-box;
@@ -327,7 +325,7 @@ section {
 }
 
 .project-icon {
-    color: var(--clr-burgundy);
+    color: var(--clr-blue);
     margin-bottom: 1.5rem;
 }
 
@@ -346,7 +344,7 @@ section {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    color: var(--clr-burgundy);
+    color: var(--clr-blue);
     font-weight: 600;
 }
 
@@ -378,7 +376,7 @@ section {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 500;
-    color: var(--clr-burgundy);
+    color: var(--clr-blue);
 }
 
 .form-group input,
@@ -408,7 +406,7 @@ section {
 
 /* --- Footer --- */
 .footer {
-    background-color: var(--clr-burgundy);
+    background-color: var(--clr-blue);
     color: var(--clr-bg);
     padding: 3rem 0;
     text-align: center;
