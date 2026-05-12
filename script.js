@@ -1,50 +1,90 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Reveal elements on scroll
-    const revealElements = document.querySelectorAll('.glass, .section-header');
-    
-    const revealOnScroll = () => {
-        revealElements.forEach(el => {
-            const rect = el.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-            if (rect.top < windowHeight * 0.85) {
-                el.style.opacity = '1';
-                el.style.transform = 'translateY(0)';
+    // Reveal elements on scroll using Intersection Observer
+    const revealCallback = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                // Once revealed, we don't need to observe it anymore
+                observer.unobserve(entry.target);
             }
         });
     };
 
-    // Set initial state for reveal elements
+    const revealOptions = {
+        threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver(revealCallback, revealOptions);
+    const revealElements = document.querySelectorAll('.reveal');
+    
     revealElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'all 0.8s ease-out';
+        observer.observe(el);
     });
 
-    window.addEventListener('scroll', revealOnScroll);
-    revealOnScroll(); // Run once on load
-
-    // Mouse follow effect for the blob
-    const blob = document.querySelector('.blob-bg');
-    document.addEventListener('mousemove', (e) => {
-        const x = e.clientX;
-        const y = e.clientY;
-        
-        blob.animate({
-            left: `${x}px`,
-            top: `${y}px`
-        }, { duration: 3000, fill: "forwards" });
+    // Navbar scroll effect
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            nav.style.height = '70px';
+            nav.style.background = 'rgba(2, 6, 23, 0.95)';
+        } else {
+            nav.style.height = '80px';
+            nav.style.background = 'rgba(15, 23, 42, 0.7)';
+        }
     });
 
     // Smooth navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const target = document.querySelector(targetId);
             if (target) {
-                target.scrollIntoView({
+                const navHeight = document.querySelector('nav').offsetHeight;
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
                     behavior: 'smooth'
                 });
             }
         });
+    });
+
+    // Form submission simulation
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = contactForm.querySelector('button');
+            const originalText = btn.innerHTML;
+            
+            // Disable button and show loading state
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            
+            // Simulate API call
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+                btn.style.background = '#10b981'; // Success green
+                contactForm.reset();
+                
+                // Revert button after 3 seconds
+                setTimeout(() => {
+                    btn.disabled = false;
+                    btn.innerHTML = originalText;
+                    btn.style.background = '';
+                }, 3000);
+            }, 1500);
+        });
+    }
+
+    // Add subtle parallax effect to hero section
+    const hero = document.querySelector('.hero');
+    window.addEventListener('scroll', () => {
+        const scrollPosition = window.pageYOffset;
+        hero.style.backgroundPositionY = `${scrollPosition * 0.5}px`;
     });
 });
